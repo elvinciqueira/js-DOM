@@ -14,6 +14,7 @@
     task.innerHTML = content;
 
     task.appendChild(CheckButton());
+    task.appendChild(DeleteButton());
     list.appendChild(task);
 
     input.value = "";
@@ -23,7 +24,7 @@
     const checkButton = document.createElement("button");
 
     checkButton.classList.add("check-button");
-    checkButton.innerText = "Check";
+    checkButton.innerText = "check";
     checkButton.addEventListener("click", checkTask);
 
     return checkButton;
@@ -34,6 +35,24 @@
     const completeTask = checkButton.parentElement;
 
     completeTask.classList.toggle("done");
+  };
+
+  const DeleteButton = () => {
+    const deleteButton = document.createElement("button");
+
+    deleteButton.innerText = "delete";
+    deleteButton.addEventListener("click", deleteTask);
+
+    return deleteButton;
+  };
+
+  const deleteTask = (event) => {
+    const deleteButton = event.target;
+    const completeTask = deleteButton.parentElement;
+
+    completeTask.remove();
+
+    return deleteButton;
   };
 
   const newTask = document.querySelector("[data-form-button]");
