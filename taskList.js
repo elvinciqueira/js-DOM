@@ -1,22 +1,42 @@
-const newTask = document.querySelector("[data-form-button]");
+(() => {
+  createTask = (event) => {
+    event.preventDefault();
 
-newTask.addEventListener("click", createTask);
+    const list = document.querySelector("[data-list]");
+    const input = document.querySelector("[data-form-input]");
+    const value = input.value;
 
-function createTask(event) {
-  event.preventDefault();
+    const task = document.createElement("li");
+    task.classList.add("task");
 
-  const list = document.querySelector("[data-list]");
-  const input = document.querySelector("[data-form-input]");
-  const value = input.value;
+    const content = `<p class="content">${value}</p>`;
 
-  const task = document.createElement("li");
-  task.classList.add("task");
+    task.innerHTML = content;
 
-  const content = `<p class="content">${value}</p>`;
+    task.appendChild(CheckButton());
+    list.appendChild(task);
 
-  task.innerHTML = content;
+    input.value = "";
+  };
 
-  list.appendChild(task);
+  CheckButton = () => {
+    const checkButton = document.createElement("button");
 
-  input.value = "";
-}
+    checkButton.classList.add("check-button");
+    checkButton.innerText = "Check";
+    checkButton.addEventListener("click", checkTask);
+
+    return checkButton;
+  };
+
+  checkTask = (event) => {
+    const checkButton = event.target;
+    const completeTask = checkButton.parentElement;
+
+    completeTask.classList.toggle("done");
+  };
+
+  const newTask = document.querySelector("[data-form-button]");
+
+  newTask.addEventListener("click", createTask);
+})();
