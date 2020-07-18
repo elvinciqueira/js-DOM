@@ -1,5 +1,5 @@
 (() => {
-  createTask = (event) => {
+  const createTask = (event) => {
     event.preventDefault();
 
     const list = document.querySelector("[data-list]");
@@ -19,7 +19,7 @@
     input.value = "";
   };
 
-  CheckButton = () => {
+  const CheckButton = () => {
     const checkButton = document.createElement("button");
 
     checkButton.classList.add("check-button");
@@ -29,7 +29,7 @@
     return checkButton;
   };
 
-  checkTask = (event) => {
+  const checkTask = (event) => {
     const checkButton = event.target;
     const completeTask = checkButton.parentElement;
 
